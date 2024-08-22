@@ -27,7 +27,42 @@ public class BookRepository {
     public ArrayList<Book> getAllBooks(){
         return this.booksDb;
     }
+
     //update
+//    public void updateBookByYear(long id,int year){
+//       Book toUpdatedBook =  this.booksDb.stream()
+//                .filter(b-> b.getId()==id).findFirst().orElseThrow();
+//       toUpdatedBook.setYear(year);
+//    }
+//    public void updateBookByDiscription(long id,String discription){
+//        Book toUpdatedBook =  this.booksDb.stream()
+//                .filter(b-> b.getId()==id).findFirst().orElseThrow();
+//        toUpdatedBook.setDescription(discription);
+//    }
+//    public void updateBookByTitle(long id, String title){
+//        Book toUpdatedBook =  this.booksDb.stream()
+//                .filter(b-> b.getId()==id).findFirst().orElseThrow();
+//        toUpdatedBook.setTitle(title);
+//    }
+//    public void updateBookCompletly(long id,String title,int year, String discription){
+//        Book toUpdatedBook =  this.booksDb.stream()
+//                .filter(b-> b.getId()==id).findFirst().orElseThrow();
+//        toUpdatedBook.setTitle(title);
+//        toUpdatedBook.setYear(year);
+//        toUpdatedBook.setDescription(discription);
+//    }
+    public void updateBook(Book book, long id){
+        Book toUpdateBook = booksDb.stream()
+                .filter(b -> b.getId()==id).findFirst().orElseThrow();
+
+        toUpdateBook.setTitle(book.getTitle());
+        toUpdateBook.setYear(book.getYear());
+        toUpdateBook.setDescription(book.getDescription());
+    }
 
     //delete
+    public void deleteBook(long id){
+        booksDb.removeIf(book -> book.getId()==id);
+
+    }
 }

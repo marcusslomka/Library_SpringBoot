@@ -18,16 +18,13 @@ public class BookController {
 
     @GetMapping
     public ArrayList<Book> getAllBooks(@RequestParam(required = false) Long bookid){
-        if(bookid == null)
             return bookService.getAllBooks();
-        else
-            return bookService.getABook(bookid);
     }
     //?bookid=2 @RequestParams
-//    @GetMapping("/{id}")
-//    public Book getABook(@PathVariable long id){
-//        return bookService.getABook(id);
-//    }
+    @GetMapping("/{id}")
+    public Book getABook(@PathVariable long id){
+        return bookService.getABook(id);
+    }
 
 //    @GetMapping("/book")
 //    public Book getAnotherBook(@RequestParam(required = false) Long bookid){
@@ -39,4 +36,10 @@ public class BookController {
     public void addBook(@RequestBody Book book){
         bookService.addBook(book);
     }
+
+   @PutMapping("/{id}")
+    public void updateBook (@RequestBody Book book,@PathVariable long id){bookService.updateBook(book,id);}
+
+    @DeleteMapping("/{id}")
+    public void deleteBook (@PathVariable long id){ bookService.deleteBook(id);}
 }
